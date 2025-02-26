@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Track Acceleration Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input { margin: 5px; padding: 5px; width: 100px; }
+        button { padding: 10px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h3>Mine Track Acceleration Calculator</h3>
+    <p>Enter time values (s) for each Mine Track:</p>
+   
+    <label>Mine Track 1:1</label>
+    <input type="number" id="time1" placeholder="Time (s)"><br>
+   
+    <label>Mine Track 1:2</label>
+    <input type="number" id="time2" placeholder="Time (s)"><br>
+   
+    <label>Mine Track 1:3</label>
+    <input type="number" id="time3" placeholder="Time (s)"><br>
+   
+    <label>Mine Track 1:4</label>
+    <input type="number" id="time4" placeholder="Time (s)"><br>
+   
+    <label>Mine Track 1:5</label>
+    <input type="number" id="time5" placeholder="Time (s)"><br>
+   
+    <button onclick="calculateAcceleration()">Calculate</button>
+   
+    <h4>Results (Acceleration in blocks/s²):</h4>
+    <p id="result1"></p>
+    <p id="result2"></p>
+    <p id="result3"></p>
+    <p id="result4"></p>
+    <p id="result5"></p>
+   
+    <script>
+        function calculateAcceleration() {
+            const distances = [9, 16, 24, 32, 40];
+            const times = [
+                parseFloat(document.getElementById("time1").value),
+                parseFloat(document.getElementById("time2").value),
+                parseFloat(document.getElementById("time3").value),
+                parseFloat(document.getElementById("time4").value),
+                parseFloat(document.getElementById("time5").value)
+            ];
+           
+            for (let i = 0; i < 5; i++) {
+                let time = times[i];
+                if (time > 0) {
+                    let acceleration = (2 * (distances[i] - (1.05 * time))) / (time * time);
+                    document.getElementById(`result${i+1}`).innerText = `Mine Track 1:${i+1}: ${acceleration.toFixed(2)} blocks/s²`;
+                } else {
+                    document.getElementById(`result${i+1}`).innerText = `Mine Track 1:${i+1}: Invalid input`;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
